@@ -1,0 +1,34 @@
+name: 'netflix'
+version: '1.0.0'
+
+profile: 'netflix'
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+# Configuring models
+models:
+  netflix:
+    # Config applied to all models
+    +materialized: view
+    
+    # Dimension models - materialized as tables
+    dim:
+      +materialized: table
+    
+    # Fact models - materialized as tables  
+    fct:
+      +materialized: table
+      
+    
+    # Staging models - materialized as views (default)
+    staging:
+      +materialized: view
